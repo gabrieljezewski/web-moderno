@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Modificando HTML #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <script>
+        // selecionando a tag body
+        const body = document.querySelector('body')
+
+        // criando a tag div
+        const div1 = document.createElement('div')
+        // adicionando a classe destaque em div1 feita em css/estilo.css
+        div1.classList.add('destaque')
+        // colocando o texto 'primeiro' dentro da div
+        div1.innerHTML = 'Primeiro'
+
+        // criando uma segunda div
+        const div2 = document.createElement('div')
+        // adicionando o atributo wm-atributo com valor teste na div
+        div2.setAttribute('wm-atributo', 'valor')
+        div2.innerHTML = 'Segundo'
+
+        // criando um parágrafo
+        const p = document.createElement('p')
+        p.innerHTML = 'Terceiro'
+
+        // adicionando uma terceira div
+        const div3 = document.createElement('div')
+        // adicionando a tag p dentro da div3
+        div3.appendChild(p)
+
+        // adicionando em tela as div's
+        body.appendChild(div1)
+        body.appendChild(div2)
+        body.appendChild(div3)
+
+        // adicionando a tag p com o texto antes da tag 'terceiro', a posição depende do número do array
+        const texto = document.createTextNode('Antes..')
+        div3.insertBefore(texto, div3.childNodes[0])
+
+        // clonando a div3 para a div4
+        const div4 = div3.cloneNode(true)
+        body.appendChild(div4)
+
+        // removendo a div3
+        body.removeChild(div3)
+    </script>
+</body>
+
+</html>

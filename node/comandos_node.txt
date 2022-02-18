@@ -1,0 +1,24 @@
+npm i lodash			Instalando a biblioteca lodash dentro de node_modules
+sudo npm i -g nodemon		Instalando o módulo nodemon de forma global, fora da pasta node_modules
+npm init -y			Criando o arquivo package.json
+npm i --save axios		Instalando a dependencia Axios, e salvando no package.json
+npm i --save axios@0.24.0 -E	Instalando a dependência Axios com uma versão específica
+Para agendar tarefas no node, precisa instalar o pacote node-schedule
+
+No package.json, para utilizar o nodemon, preciso inserir em "scripts": {}
+"start": "nodemon"
+Depois para rodar a aplicação, executo npm start
+Se quero colocar outro nome, por exemplo: "dev": "nodemon"
+Para rodar, será necessário executar: npm run dev
+
+
+Projeto api, criando estrutura.
+Criei a pasta da aplicação, por exemplo: /projeto
+Após, executei npm init -y para criar o arquivo package.json
+Executei npm i --save express@4.16.2 -E para instalar o Express
+Criei a pasta /src dentro de /projeto com o arquivo servidor.js
+
+Configurei o nodemon, em package.json, adicionei em "scripts": {}
+"start": "nodemon",
+Executei npm i --save-dev nodemon
+Executando pelo Postman a url http://localhost:3003/produtos, irá aparecer o objeto convertido em Json

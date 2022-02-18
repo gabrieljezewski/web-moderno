@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #02</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body class="conteudo exercicio">
+    <div id="primeiro">#primeiro</div>
+    <div>Segundo</div>
+    <div class="terceiro ultimo"><span wb-attrib>.terceiro .ultimo</span></div>
+    <script>
+        // Selecionando o id #primeiro e adicionando a classe destaque pelo evento classlist
+        document.querySelector('#primeiro').classList.add('destaque')
+
+        const selecionar = seletor =>
+            document.querySelectorAll(seletor).forEach(e => e.classList.add('destaque'))
+        const deselecionar = seletor =>
+            document.querySelectorAll(seletor).forEach(e => e.classList.remove('destaque'))
+
+        selecionar('div')
+
+        selecionar('.terceiro.ultimo')
+        deselecionar('*')
+
+        // selecionar todos menos o primeiro
+        selecionar(':not(#primeiro)')
+
+        // selecionando o primeiro filho de um elemento
+        selecionar(':nth-child(1)')
+        
+        // selecionando primeiro elemento do tipo div
+        selecionar('div:nth-of-type(1)')
+
+        // selecionando o elemento pelo atributo personalizado
+        selecionar('[wb-attrib]')
+
+
+        // querySelector e querySelectorAll retorna um nodelist, que possui um Array, mas não outros métodos, como map, reduce e etc..
+    </script>
+</body>
+</html>

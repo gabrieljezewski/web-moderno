@@ -1,0 +1,160 @@
+Se estiver usando flex box, é usado display: flex; Se usar css grid, é usado display: grid; 
+display: block;  Cada elemento ocupa uma linha.
+display: none; Oculta o elemento da tela.
+display: inline; Todos elementos ocupam a mesma linha, porém nessa propriedade não é validado width ou height.
+display: inline-block; Todos elementos ocupam a mesma linha, porém irá permitir o uso de width ou height.
+
+box-sizing: border-box; Utilizando essa propriedade, ele vai somar tanto a quantidade colocada no padding, margin, borda para o tamanho total da caixa.
+box-sizing: content-box; Utilizando essa propriedade, ele irá somar todas as propriedadas colocadas ao elemento, como margin, padding e borda e ultrapassar o tamanho da caixa.
+
+overflow: hidden; Tudo que ficar fora da caixa do elemento, ele irá esconder.
+overflow: scroll; Aplicar o scroll do mouse para a caixa onde possui o elemento inserido.
+overflow-x: scroll; Aplicar o scroll do mouse apenas na linha horizontal.
+overflow-y: hidden; Esconde o scroll do mouse na linha vertical.
+
+float: right; Colocando todos elementos alinhados para direita.
+float: left; Colocando todos elementos alinhados para esquerda.
+clear: float; Limpando o float do elemento, jogando para a linha de baixo.
+clear: both; Limpando o float do elemento, tanto da direita como pra esquerda.
+
+unidades absolutas:
+margin: 30px; Unidade pixel.
+
+unidades relativas:
+font-size: 4em; 4x o tamanho da fonte original. 1em equivale 16px.
+width: 20vw; 20% da altaura da tela.
+height: 15vh; 15% da largura da tela
+
+position: static; Ocupa 100% do conteúdo que está na div. Como também não são considerados propriedades top e left.
+position: relative; Ocupa 100% do conteúdo que está na div. As propriedadas inseridas pra ele, sempre são relativo ao elemento anterior.
+position: absolute; Ocupa 100% do conteúdo mais o padding que está na div. Ele se comporta ficando por cima ou não de outros elementos.
+position: fixed; Ocupa 100% do conteúdo do viewport, tamanho da tela e não da div.
+position: sticky; Serve para quando rolar a tela pelo scroll, o elemento continuar aparecendo em tela.
+position: -webkit-sticky; Precisa colocar para usar no safari.
+
+Importante: Se eu quero colocar elementos dentro de outro, eu defino no componanete pai como relative, e no componente filho como absolute.
+
+
+Usando Media Query:
+@media (max-width: 500px) {
+    .elemento1 { display: block; }
+}
+
+@media (max-width: 1000px), (orientation: landscape) {		//Significa que ou a primeira condição é executada ou a segunda condição.
+    .elemento2 { display: block; }
+}
+
+@media (min-width: 500px) and (max-width: 1000px {		//Será executado se as duas condições forem verdadeiras, se for maior ou igual a 500px e menor ou igual a 1000px.
+    .elemento3 { display: block; }
+}
+
+
+flex box: É usado quando precisa definir um eixo principal, na linha vertical ou horizontal, sendo unidimensional.
+Flex Container, contém o main axis, define se o meu eixo principal, se será na vertical ou horizontal, e o cross axis, define o meu eixo secundário.
+Dentro do meu flex container, passa a ter meus flex item.
+main size define o tamanho do meu eixo principal no flex container, começando com main start e terminando com main end.
+cross size define o tamanho do meu eixo secundário no flex container, começando com cross start e terminando com croos end.
+
+display: flex;
+flex-direction: column ou row;	Definindo a direção do eixo principal.
+flex-direction: row-reverse;	Definindo o eixo como linha mas invertido os elemetos.
+flex-wrap: wrap;		Respeitando a largura, fazendo com que os elementos quebrem de linha dentro do container.
+flex-wrap: nowrap;		Definido para não quebrar a linha dos elementos.
+flex-flow: row wrap;		Definindo o eixo como linha, com a quebra de linha conforme o tamanho do container.
+
+Utilizado para o main axis.
+justify-content: flex-start; 	alinhando elementos para o começo.
+justify-content: flex-end;	alinhando elementos para o final.
+justify-content: center;
+justify-content: space-around;	colocando o mesmo espaço em volta dos elementos dentro do container.
+justify-content: space-between; colocando espaço apenas entre os elementos, e não nas laterais.
+
+Utilizado para cross axis.
+align-items: stretch; 		padrão utilizado pelo croos axis.
+align-items: baseline; 		alinha pela base da fonte ou elemento, podendo ser maior ou menor.
+align-items: flex-start ou flex end;  Alinhando elementos no começo ou final dentro do container.
+align-items: center;
+
+Quando se tem elementos com mais de uma linha dentro do Flex Container.
+align-content: flex-start;	todas linhas se alinham no topo, no começo do container.
+align-content: flex-end;
+align-content: center;
+align-content: space-around;
+
+align-self: flex-end; 	Alinhando para o final apenas para um elemento específico.
+align-self: center;
+lign-self: flex-end;
+
+order: 1;		Alterando a ordem de um determinado elemento dentro do container.
+order: 0;
+order: -1;
+
+Ex de uso com flex-grow;
+Tenho um container com 600px de tamanho, e cada elemento ocupa 100px, totalizando 400px porém sobrando 200px no container ainda para ser ocupado.
+Vamos dizer que defino peso 1 em cada elemento, somando 4 ao total. Faço 4 divido pelo espaço que sobrou no container, que é 200. 4/200 é 50. Então o resultado, eu faço 50x o peso do elemento que é 1, totalizando 150px pra cada.
+
+Agrupando os elementos dentro do container para usar o espaço faltando de acordo com o peso colocado.
+flex-grow: 0;
+flex-grow: 1;
+flex-grow: 2;
+
+Seria o mesmo objetivo do flex-grow, porém para encolher os elementos no espaço faltando de acordo com o peso colocado.
+flex-shrink: 1;
+flex-shrink: 5;
+
+flex-basis: 100px;	Definindo a largura de um determinado elemento dentro do flex container no sentido main axis.
+flex: 3 6 100px;	Em ordem dos valores, está definido o grow, shirink e basis.
+
+CSS grid.
+display: grid;
+grid-template-columns: 50% 50%;			Definindo 2 colunas, cada uma ocupando 50% do espaço da tela.
+grid-template-columns: repeat(12, 8.33%);	definido 12 colunas, cada uma ocupando 8.33% do espaço da tela.
+grid-template-columns: repeat(11, 100px);	definido 11 colunas, cada uma com 100px.
+grid-template-columns: minmax(100px, 300px);	definindo minha coluna que tenha no mínimo 100px e no máximo 300px.
+grid-template-columns: 200px 20% 1fr;		Definindo a primeira coluna com 200px, segunda coluna com 20% da tela e a terceira pegar todo resto da tela.
+grid-template-columns: 3fr 6fr 3fr;
+grid-template-rows: 50% 25% 12.5% 12.5%		Definindo a primeira linha com 50%, segunda linha com 25% e terceira e quarta linha com 12.5% da tela.
+grid-template-rows: 100px 1fr;
+grid-template-rows: 100px auto; 		definindo a primeira linha com 100px, e o restante das colunas de forma igual de acordo com o espaço da tela.
+
+Utilizando o plugin do css grid no mozilla, que mostra a númeração de cada coluna e linha.
+grid-column-start: 2;		Definindo minha coluna para iniciar a partir da coluna 2.
+grid-column-end: 4;		Definindo minha coluna para terminar na coluna 4.
+grid-row-start: 3;		Definindo minha linha para iniciar a partir da linha 3.
+grid-row-end: 5;		Definindo minha linha para terminar na linha 5.
+grid-column: 3 / 7;		Definindo minha coluna para iniciar na linha 3 e terminar na linha 7.
+grid-area: 1 / 4 / 3 / 5;	Definindo na ordem o row-start, column start, row-end e  column-end.
+grid-template-colums: [inicio] 1fr [metade] 1fr [fim];	Colocando nomes nas colunas.
+column-gap: 20px;		Colocando um espaço de 20px entre as colunas.
+row-gap: 20px;		Colocando um espaço de 20px entre as linhas.
+grid-gap: 50px 10px;		Colocando 50px de espaço entre as linhas, e 10px de espaço entre as colunas.
+gap: 10px;			Colocando espaço de 10px entre todas as linhas e colunas.
+
+
+Definindo nomes em minhas linhas e colunas no css grid.
+Por exemplo, criando primeiro meus elementos do html, e colocando nomes para cada um usando o grid-area.
+header { grid-area: cabecalho; }
+nav { grid-area: navegacao; }
+main { grid-area: conteudo; }
+footer { grid-area: rodape; }
+
+body {
+	display: grid;
+	min-height: 100vh;
+	grid-template-columns: 300px 1fr;	Definindo a quantidade de colunas e largura em minha grid
+	grid-template-rows: 100px 1fr 100px;	Definindo a quantidade de linhas e altura em minha grid
+	grid-template-areas: 			Definindo como irei organizar os elementos na tela
+		'cabecalho cabecalho'
+		'naveacao conteudo' 
+		'rodape rodape';
+}
+
+Adaptando para mobile.
+@media(max-width: 700px) {
+	body {
+	    grid-template-columns: 1fr;
+	    grid-template-rows: 80px 1fr 100px;
+	    grid-template-areas: 'navegacao' 'conteudo' 'rodape';
+	}
+	header { display: none; }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Acessando Atributos #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <div>
+        <a href='https://www.cod3r.com.br'>Cod3r</a>
+    </div>
+    <div id='primeiro'>
+        <img src='http://files.cod3r.com.br/curso-web/logo-estreita.png' alt='logo'>
+    </div>
+    <script>
+        const img = document.querySelector('img')
+        // Acessando o atributo src do elemento img
+        console.log(img.getAttribute('src'))
+        // Acessando também o src do elemento img, porém sem o getAttribute
+        console.log(img.src)
+        console.log(img['src'])
+        // Acessando o atributo alt do elemento img
+        console.log(img.alt)
+        // Todos elementos/atributos possuem um nodetype, pode ser visto aqui: https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
+        console.log(img.nodeType)
+        // Acessando elementos/atributos pelo nodeName
+        console.log(img.nodeName)
+
+        const src = img.getAttributeNode('src')
+        console.log(src.nodeType)
+        console.log(src.nodeName)
+        console.log(src.nodeValue)
+
+        const link = document.querySelector('a')
+        console.log(link.href)
+        console.log(link.firstChild.nodeType)
+        link.firstChild.nodeValue = 'Novo Texto'
+    </script>
+</body>
+
+</html>

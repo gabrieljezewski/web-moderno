@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #01</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body class="conteudo exercicio">
+    <div id="primeiro">#primeiro</div>
+    <div>Segundo</div>
+    <div class="terceiro ultimo">.terceiro .ultimo</div>
+    <script>              
+        document.getElementById('primeiro').classList.add('destaque')
+
+        // Selecionando todos elementos da tag div
+        const divs = document.getElementsByTagName('div')
+        // Convertendo elentos div para um array, percorrer cada um para remover a classe destaque
+        Array.from(divs).forEach(e => e.classList.remove('destaque'))
+
+        // Espalhando os elementos dentro deste novo array
+        const divsArray = [...divs]
+        // Adicionando a classe destaque para todos elementos dentro do array
+        divsArray.forEach(e => e.classList.add('destaque'))
+
+        // Removendo a classe destaque do último elemento
+        const ultimosElementos = document.getElementsByClassName('ultimo')
+        for(let e of ultimosElementos) {
+            e.classList.remove('destaque')
+        }
+
+
+        // getElement retorna um html collections, que dentro dele não possui array, sendo necessário converter com array.from
+    </script>
+</body>
+</html>

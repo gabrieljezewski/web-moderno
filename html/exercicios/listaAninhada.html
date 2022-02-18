@@ -1,0 +1,57 @@
+<h1>Porjeto</h1>
+<ul class="tree">
+    <li>
+        <span wm-folder>backend</span>
+        <ul>
+            <li>
+                <span id="open-folder">app</span>
+                <ul>
+                    <li>produto.js</li>
+                    <li>usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+            </li>
+            <li>
+                <span id="open-folder">config</span>
+                <ul>
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <span id="open-folder">frontend</span>
+        <ul>
+            <li>
+                <span id="open-folder">public</span>
+                <ul>
+                    <li>app.css</li>
+                    <li>app.js</li>
+                    <li>index.html</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+<script>
+    document.querySelectorAll('span').forEach(folder => {
+        const openFolder = document.getElementById('open-folder')
+
+        folder.onclick = function(e) {
+            const ul = folder.nextElementSibling                   //Pegando o próximo elemento depois da tag ul
+            const d = ul.style.display
+            ul.style.display = d === 'none' ? 'block' : 'none'     //Se o display for igual a 'none' recebe block, caso contrário é visível
+        }
+    })
+</script>
+
+<!-- Exemplo de código se fosse utilizado minha própria tag 'wm-folder 'ao invés da tag span-->
+<!-- document.querySelectorAll('[wm-folder]').forEach(folder => {
+    folder.onclick = function(e) {
+        console.log('teste')
+    }
+}) -->

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Acessando Atributos #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <div>
+        <label for="compras">Compras</label>
+        <ul id="compras" destino='escritório' data-urgencia="5">
+            <li>Café</li>
+            <li>Água</li>
+            <li>Copo Descartável</li>
+        </ul>
+    </div>
+    <script>
+        const lista = document.querySelector('#compras')
+        console.log(lista.childNodes)
+        // selecionando a propriedade personalizada destino dentro da ul
+        console.log(lista.getAttribute('destino'))
+        // para saber se um atributo está ou não presente dentro de um elemento
+        console.log(lista.hasAttribute('destino'))
+        // alterando o atributo destino de escritorio para empresa
+        lista.setAttribute('destino', 'empresa')
+        // adicionando um novo atributo para a ul
+        lista.setAttribute('status', 'ativo')
+        // removendo um atributo de ul
+        lista.removeAttribute('destino')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #04</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body class="conteudo exercicio">
+    <div>
+        <p>Início</p>
+    </div>
+    <div>
+        <ul>
+            <li>Pedro</li>
+            <li>Ana</li>
+            <li>Bia</li>
+        </ul>
+    </div>
+    <div>
+        <p>Fim</p>
+    </div>
+    <script>
+        const lista = document.querySelector('div ul')
+        // Selecionando a div pai
+        console.log(lista.parentNode)
+        // Selecionando as 3 li dentro de ul que são filhas
+        console.log(lista.childNodes)
+
+        const primeiro = lista.firstChild
+        // selecionando o primeiro elemento dentro de ul
+        console.log(primeiro)
+        // selecionando o próximo elemento dentro de ul
+        console.log(primeiro.nextSibling)
+        const ultimo  = lista.lastChild
+        // selecionando o ultimo elemento dentro de ul
+        console.log(ultimo)
+        // selecionando o elemento anterior dentro de ul
+        console.log(ultimo.previousSibling)
+        // selecionando os li sem os txt, porém em htmlCollection
+        console.log(lista.children)
+        // selecionando o primeiro li dentro de ul, diferente do ex de cima, que viria o txt devido o espaço no html
+        console.log(lista.firstElementChild)
+    </script>
+</body>
+
+</html>
