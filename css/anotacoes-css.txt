@@ -47,8 +47,7 @@ Usando Media Query:
     .elemento3 { display: block; }
 }
 
-FlexBox
-
+FlexBox.
 Setando como display flex no container, irá dizer que meu container é uma linha, se quiser que ele seja uma coluna, seria preciso setar flex-direction: column.
 Modificando posicições dos elementos na linha horizontal:
 justify-content: flex-start; 	alinhando elementos para o começo.
