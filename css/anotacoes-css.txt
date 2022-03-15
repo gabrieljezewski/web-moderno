@@ -31,7 +31,6 @@ position: absolute; Ocupa 100% do conteúdo mais o padding que está na div. Ele
 position: fixed; Ocupa 100% do conteúdo do viewport, tamanho da tela e não da div.
 position: sticky; Serve para quando rolar a tela pelo scroll, o elemento continuar aparecendo em tela.
 position: -webkit-sticky; Precisa colocar para usar no safari.
-
 Importante: Se eu quero colocar elementos dentro de outro, eu defino no componanete pai como relative, e no componente filho como absolute.
 
 
@@ -48,32 +47,29 @@ Usando Media Query:
     .elemento3 { display: block; }
 }
 
+FlexBox
 
-flex box: É usado quando precisa definir um eixo principal, na linha vertical ou horizontal, sendo unidimensional.
-Flex Container, contém o main axis, define se o meu eixo principal, se será na vertical ou horizontal, e o cross axis, define o meu eixo secundário.
-Dentro do meu flex container, passa a ter meus flex item.
-main size define o tamanho do meu eixo principal no flex container, começando com main start e terminando com main end.
-cross size define o tamanho do meu eixo secundário no flex container, começando com cross start e terminando com croos end.
-
-display: flex;
-flex-direction: column ou row;	Definindo a direção do eixo principal.
-flex-direction: row-reverse;	Definindo o eixo como linha mas invertido os elemetos.
-flex-wrap: wrap;		Respeitando a largura, fazendo com que os elementos quebrem de linha dentro do container.
-flex-wrap: nowrap;		Definido para não quebrar a linha dos elementos.
-flex-flow: row wrap;		Definindo o eixo como linha, com a quebra de linha conforme o tamanho do container.
-
-Utilizado para o main axis.
+Setando como display flex no container, irá dizer que meu container é uma linha, se quiser que ele seja uma coluna, seria preciso setar flex-direction: column.
+Modificando posicições dos elementos na linha horizontal:
 justify-content: flex-start; 	alinhando elementos para o começo.
 justify-content: flex-end;	alinhando elementos para o final.
 justify-content: center;
 justify-content: space-around;	colocando o mesmo espaço em volta dos elementos dentro do container.
 justify-content: space-between; colocando espaço apenas entre os elementos, e não nas laterais.
 
-Utilizado para cross axis.
+Modificando posições dos elementos na linha vertical:
 align-items: stretch; 		padrão utilizado pelo croos axis.
 align-items: baseline; 		alinha pela base da fonte ou elemento, podendo ser maior ou menor.
 align-items: flex-start ou flex end;  Alinhando elementos no começo ou final dentro do container.
 align-items: center;
+
+Importante: Se eu definir meu flex-direction como column, a propriedade justify-content começa a alinhar meus elementos na vertical, e o align-items na horizontal.
+
+flex-direction: row-reverse;	Definindo o eixo como linha mas invertido os elemetos.
+flex-direction: column-reverse; Definindo o eixo como coluna mas invertido os elemetos.
+flex-wrap: wrap;		Respeitando a largura, fazendo com que os elementos quebrem de linha dentro do container.
+flex-wrap: nowrap;		Definido para não quebrar a linha dos elementos.
+flex-flow: row wrap;		Definindo o eixo como linha, com a quebra de linha conforme o tamanho do container.
 
 Quando se tem elementos com mais de uma linha dentro do Flex Container.
 align-content: flex-start;	todas linhas se alinham no topo, no começo do container.
