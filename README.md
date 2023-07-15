@@ -86,10 +86,11 @@ $ timedatectl
 ```
 <br>
 <h1>Item 3:</h1>
-<p>Executei os comandos abaixo para instalar o Nginx, iniciar o serviço e verificar o status.</p>
+<p>Executei os comandos abaixo para instalar o Nginx, ativar o serviço e verificar o status.</p>
 
 ```bash
 $ sudo yum install nginx
+$ sudo systemctl enable nginx
 $ sudo systemctl start nginx
 $ sudo systemctl status nginx
 ```
