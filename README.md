@@ -118,3 +118,4 @@ $ }
 ```
 
 <p>Neste script, configurei o servidor para escutar na porta 80 e associei o nome do servidor "gabrieljezewski.kinghost.net" ao vhost. O diretório raiz está definido como "/home/gabrieljezewski/www"</p>
+<p>Após isso, acessei meu painel da KingHost onde possuo o domínio gabrieljezewski.kinghost.net, e no ícone gerenciar DNS percebi que as entradas @ e www estavam incorretas, apontadas para web01-king.kinghost.net. Alterei elas para o ip da vps 177.153.58.61</p>
