@@ -44,10 +44,17 @@ $
 # Primeiramente atualizei os pacotes do sistema com o comando yum install
 # Executei o comando abaixo para alterar o hostname de forma persistente
 $ sudo hostnamectl set-hostname gabrieljezewski
-# Acessei o arquivo de configuração /etc/hostname.
-$ vim /etc/hostname
-# Alterei a única linha que estava presente com o nome desafio-n2 para gabrieljezewski.
-$ Insert para alterar o arquivo, e ctrl :wq para salvar o arquivo
+
+cd /etc/systemd/system/default.target.wants
+grep "hostname" * -Rl
+vim default.target.wants/donttouchmeimscared.service
+vim /bin/donttouchme.sh
+chmod -x donttouchme.sh
+vim /root/.bash_profile
+chattr -ia .bash_profile
+rm -rf .bash_profile
+
+
 # Para mudar o fuso horário, primeiro listei os que estavam disponíveis.
 $ timedatectl list-timezones
 # Criei um link simbólico do fuso America/Argentina/Buenos_Aires para /etc/localtime que seria o mais próximo de São Paulo.
