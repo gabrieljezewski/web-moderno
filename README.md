@@ -133,3 +133,49 @@ $ systemctl restart nginx
 
 <br>
 <h1>Item 4:</h1>
+<p>Para instalação do PHP8 e PHP-FPM, foi necessário isntalar antes o repositório Remi e yum-utils.</p>
+
+```bas
+$ sudo yum install epel-release
+$ sudo yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+$ sudo yum install yum-utils
+```
+
+<p>Após isso, ativei o módulo PHP8 do respositório, instalei o php e confirmei a versão instalada.</p>
+$ sudo yum module enable php:remi-8.0
+$ sudo yum install php
+$ php -v
+
+<p>A pool deverá ser configurada para ser utilizada com o usuário(SEUNOMESOBRENOME)</p>
+<p>Configure uma pool chamada (SEUNOMESOBRENOME).kinghost.net que escute via unix socket no seguinte endereço: /var/run/php-fpm/(SEUNOMESOBRENOME).sock</p>
+<p>Você deve configurar a pool para trabalhar com processos por demanda</p>
+<p>A pool deve conter a configuração de 2 processos.</p>
+
+<p>Criei o arquivo phpinfo.php em /home/gabrieljezewski/www com o script abaixo:</p>
+
+```bas
+$ vim /home/gabrieljezewski/www/phpinfo.php
+```
+
+```bas
+$ <?php
+$  phpinfo();
+$ ?>
+```
+
+<p>Após isso, percebi que o servidor ainda não estava interpretando arquivo php, deste modo foi necessário cofigurar em meu arquivo gabrieljezewski.conf localizado em /etc/nginx/conf.d/ o seguinte trecho abaixo do código já existe:</p>
+
+```bas
+$ location ~ \.php$ {
+$   fastcgi_pass unix:/run/php-fpm/www.sock;
+$   fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+$   include fastcgi_params;
+$  }
+$ }
+```
+
+<p>Feito isso, reiniciei o servidor para surtir efeito.</p>
+
+```bas
+$ systemctl restart nginx
+```
