@@ -42,7 +42,7 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
 $ sudo hostnamectl set-hostname gabrieljezewski
 ```
 
-<p>Porém ao reiniciar a máquina, voltou com o antigo nome desafio-n2. Deste modo imaginei que este arquivo /etc/hostname esteja sendo reescrito sempre quando reiniciado, sendo assim pesquisei quais poderiam ser os arquivos que são habilitados para serem iniciados em determinados momentos, e encontrei que poderia ser os /etc/systemd/system/*.wants/
+<p>Porém ao reiniciar a máquina, voltou com o antigo nome desafio-n2. Deste modo imaginei que este arquivo /etc/hostname esteja sendo reescrito sempre quando reiniciado, sendo assim pesquisei quais poderiam ser os arquivos dentro da estrutura da máquina que são habilitados para serem iniciados em determinados momentos, e encontrei que poderia ser os arquivos *.wants localizados em /etc/systemd/system
 Procurei a partir deste diretório utilizando o comando grep para achar o termo hostname e encontrei no default.target.wants/donttouchmeimscared.service, que apontava para o script /bin/donttouchme.sh fazer a troca do nome.
 Abaixo segue os comandos em ordem executados:
 </p>
