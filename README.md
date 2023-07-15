@@ -5,9 +5,9 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
 
 ## Instruções para a prova
 
-- [ ] Utilize o domínio .kinghost.net disponível em seu cadastro interno para que responda pelo VPS.
+- [x] Utilize o domínio .kinghost.net disponível em seu cadastro interno para que responda pelo VPS.
 - [x] Item 2 - Altere o hostname da máquina para (SEUNOMESOBRENOME) de forma persistente, e ajuste o fuso horário do servidor para o horário de São Paulo.
-- [ ] Item 3 - Configure a seguinte estrutura para servir aplicações web com linguagem PHP:
+- [x] Item 3 - Configure a seguinte estrutura para servir aplicações web com linguagem PHP:
   - Instale o webserver Nginx;
   - Crie um vhost para o site que corresponde ao seu domínio: (SEUNOMESOBRENOME).kinghost.net;
   - O diretório do site deverá ser /home/(SEUNOMESOBRENOME)/www
@@ -34,6 +34,10 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
   - Instalar o plugin WP Mail SMTP e realizar um teste de envio para testandosuaconta.n2@gmail.com;
 
 ## Resolução
+<h1>Item 1:</h1>
+<p>Acessei meu painel de controle da KingHost onde possuo o domínio gabrieljezewski.kinghost.net, e no ícone gerenciar DNS alterei as entradas @ e www que estavam incorretas, apontadas para web01-king.kinghost.net. Alterei elas para o ip da vps 177.153.58.61</p>
+
+<br>
 <h1>Item 2:</h1>
 <p>Primeiramente atualizei os pacotes do sistema com o comando yum install. Após isso executei o comando abaixo para alterar o hostname de forma persistente.
 </p>
@@ -118,4 +122,3 @@ $ }
 ```
 
 <p>Neste script, configurei o servidor para escutar na porta 80 e associei o nome do servidor "gabrieljezewski.kinghost.net" ao vhost. O diretório raiz está definido como "/home/gabrieljezewski/www"</p>
-<p>Após isso, acessei meu painel da KingHost onde possuo o domínio gabrieljezewski.kinghost.net, e no ícone gerenciar DNS percebi que as entradas @ e www estavam incorretas, apontadas para web01-king.kinghost.net. Alterei elas para o ip da vps 177.153.58.61</p>
