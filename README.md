@@ -5,13 +5,13 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
 
 ## Instruções para a prova
 
-- [x] Utilize o domínio .kinghost.net disponível em seu cadastro interno para que responda pelo VPS.
+- [x] Item 1 - Utilize o domínio .kinghost.net disponível em seu cadastro interno para que responda pelo VPS.
 - [x] Item 2 - Altere o hostname da máquina para (SEUNOMESOBRENOME) de forma persistente, e ajuste o fuso horário do servidor para o horário de São Paulo.
 - [x] Item 3 - Configure a seguinte estrutura para servir aplicações web com linguagem PHP:
   - Instale o webserver Nginx;
   - Crie um vhost para o site que corresponde ao seu domínio: (SEUNOMESOBRENOME).kinghost.net;
   - O diretório do site deverá ser /home/(SEUNOMESOBRENOME)/www
-- [ ] Item 4 - Instale o PHP e o PHP-FPM.
+- [x] Item 4 - Instale o PHP e o PHP-FPM.
   - A pool deverá ser configurada para ser utilizada com o usuário (SEUNOMESOBRENOME);
   - Configure uma pool chamada (SEUNOMESOBRENOME).kinghost.net que escute via unix socket no seguinte endereço: /var/run/php-fpm/(SEUNOMESOBRENOME).sock;
   - Configurar a pool para trabalhar com processos por demanda;
