@@ -50,10 +50,11 @@ grep "hostname" * -Rl
 vim default.target.wants/donttouchmeimscared.service
 vim /bin/donttouchme.sh
 chmod -x donttouchme.sh
+# Acessei o arquivo .bash_profile e inseri o código abaixo:
 vim /root/.bash_profile
-chattr -ia .bash_profile
-rm -rf .bash_profile
-
+sleep 5
+hostnamectl set-hostname gabrieljezewski
+chattr +ia .bash_profile
 
 # Para mudar o fuso horário, primeiro listei os que estavam disponíveis.
 $ timedatectl list-timezones
@@ -62,4 +63,13 @@ $ sudo ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 # Executei os comandos abaixo para sincronizar o horário, e verificar se de fato foi alterado
 $ sudo hwclock --systohc
 $ timedatectl
+```
+
+```bash
+# Item 3:
+# Executei os comandos abaixo para instalar o Nginx, iniciar o serviço e verificar o status.
+$ sudo yum install nginx
+$ sudo systemctl start nginx
+$ sudo systemctl status nginx
+
 ```
