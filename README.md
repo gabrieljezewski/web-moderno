@@ -54,6 +54,5 @@ $ timedatectl list-timezones
 $ sudo ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 # Executei os comandos abaixo para sincronizar o horário, e verificar se de fato foi alterado
 $ sudo hwclock --systohc
-$ date
 $ timedatectl
 ```
