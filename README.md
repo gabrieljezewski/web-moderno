@@ -81,6 +81,7 @@ $ sudo hwclock --systohc
 $ timedatectl
 ```
 
+
 <h1>Item 3:</h1>
 <p>Executei os comandos abaixo para instalar o Nginx, iniciar o serviço e verificar o status.</p>
 
