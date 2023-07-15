@@ -34,39 +34,65 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
   - Instalar o plugin WP Mail SMTP e realizar um teste de envio para testandosuaconta.n2@gmail.com;
 
 ## Resolução
-## Item 2:
+<h1>Item 2:</h1>
+<p>Primeiramente atualizei os pacotes do sistema com o comando yum install. Após isso executei o comando abaixo para alterar o hostname de forma persistente.
+</p>
+
 ```bash
-# Primeiramente atualizei os pacotes do sistema com o comando yum install
-# Executei o comando abaixo para alterar o hostname de forma persistente
 $ sudo hostnamectl set-hostname gabrieljezewski
+```
 
-cd /etc/systemd/system/default.target.wants
-grep "hostname" * -Rl
-vim default.target.wants/donttouchmeimscared.service
-vim /bin/donttouchme.sh
-chmod -x donttouchme.sh
-# Acessei o arquivo .bash_profile e inseri o código abaixo:
-vim /root/.bash_profile
-sleep 5
-hostnamectl set-hostname gabrieljezewski
-chattr +ia .bash_profile
+<p>Porém ao reiniciar a máquina, voltou com o antigo nome desafio-n2. Deste modo imaginei que este arquivo /etc/hostname esteja sendo reescrito sempre quando reiniciado, sendo assim pesquisei quais poderiam ser os arquivos que são habilitados para serem iniciados em determinados momentos, e encontrei que poderia ser os /etc/systemd/system/*.wants/
+Procurei a partir deste diretório utilizando o comando grep para achar o termo hostname e encontrei no default.target.wants/donttouchmeimscared.service, que apontava para o script /bin/donttouchme.sh fazer a troca do nome.
+Abaixo segue os comandos em ordem executados:
+</p>
 
-# Para mudar o fuso horário, primeiro listei os que estavam disponíveis.
+```bash
+$ cd /etc/systemd/system/default.target.wants
+$ grep "hostname" * -Rl
+$ vim default.target.wants/donttouchmeimscared.service
+$ vim /bin/donttouchme.sh
+```
+
+<p>Deste modo, pensei em renomear o arquivo, retirar permissões, atribuir chattr a ele mas sem sucesso. Deste modo, percebi que ele identifiquei que ele fazia a mudança deste script para o arquivo /root/.bash_profile, e nele adicionei o seguint script que funcionou:</p>
+
+```bash
+$ # .bash_profile
+$ sleep 5
+$ hostnamectl set-hostname gabrieljezewski
+$ exec bash
+$ 
+$ # Get the aliases and functions
+$ if [ -f ~/.bashrc ]; then
+$         . ~/.bashrc
+$ fi
+$ 
+$ # User specific environment and startup programs
+$ PATH=$PATH:$HOME/bin
+$ export PATH
+```
+
+<p>Para mudar o fuso horário, primeiro listei os que estavam disponíveis. Criei um link simbólico do fuso America/Argentina/Buenos_Aires para /etc/localtime que seria o mais próximo de São Paulo. E por fim sincronizei o horário e conferi se de fato foi alterado.</p>
+
+```bash
 $ timedatectl list-timezones
-# Criei um link simbólico do fuso America/Argentina/Buenos_Aires para /etc/localtime que seria o mais próximo de São Paulo.
 $ sudo ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-# Executei os comandos abaixo para sincronizar o horário, e verificar se de fato foi alterado
 $ sudo hwclock --systohc
 $ timedatectl
 ```
 
+<h1>Item 3:</h1>
+<p>Executei os comandos abaixo para instalar o Nginx, iniciar o serviço e verificar o status.</p>
+
 ```bash
-# Item 3:
-# Executei os comandos abaixo para instalar o Nginx, iniciar o serviço e verificar o status.
 $ sudo yum install nginx
 $ sudo systemctl start nginx
 $ sudo systemctl status nginx
-# Listei as portas liberadas, vi que não estava a pota 80, então liberei a mesma.
+```
+
+<p>Listei as portas liberadas, vi que não estava a pota 80, então liberei a mesma.</p>
+
+```bas
 $ firewall-cmd --list-ports
 $ firewall-cmd --permanent --zone=public --add-port=80/tcp
 ```
