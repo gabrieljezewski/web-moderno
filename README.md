@@ -96,14 +96,14 @@ $ sudo systemctl status nginx
 
 <p>Listei as portas liberadas, vi que não estava a pota 80, então liberei a mesma.</p>
 
-```bas
+```bash
 $ firewall-cmd --list-ports
 $ firewall-cmd --permanent --zone=public --add-port=80/tcp
 ```
 
 <p>Para criar um vhost apontado para gabrieljezewski.kinghost.net, criei o arquivo gabrieljezewski.conf dentro de /etc/nginx/conf.d/ e inseri o seguite script:</p>
 
-```bas
+```bash
 $ sudo vim /etc/nginx/conf.d/gabrieljezewski.conf
 ```
 
@@ -122,10 +122,9 @@ $ }
 ```
 
 <p>Neste script, configurei o servidor para escutar na porta 80 e associei o nome do servidor "gabrieljezewski.kinghost.net" ao vhost. O diretório raiz está definido como "/home/gabrieljezewski/www"</p>
-<p>Após isso, criei o diretório /home/gabrieljezewski/www, verifiquei se as permissões está corretas, e reiniciar o servidor para testar.</p>
+<p>Após isso, criei o diretório /home/gabrieljezewski/www, verifiquei se as permissões estão corretas, e reiniciei o servidor para testar.</p>
 
-
-```bas
+```bash
 $ sudo mkdir -p /home/gabrieljezewski/www
 $ ls -ld /home/gabrieljezewski/www
 $ systemctl restart nginx
@@ -135,16 +134,19 @@ $ systemctl restart nginx
 <h1>Item 4:</h1>
 <p>Para instalação do PHP8 e PHP-FPM, foi necessário isntalar antes o repositório Remi e yum-utils.</p>
 
-```bas
+```bash
 $ sudo yum install epel-release
 $ sudo yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 $ sudo yum install yum-utils
 ```
 
 <p>Após isso, ativei o módulo PHP8 do respositório, instalei o php e confirmei a versão instalada.</p>
+
+```bash
 $ sudo yum module enable php:remi-8.0
 $ sudo yum install php
 $ php -v
+```
 
 <p>A pool deverá ser configurada para ser utilizada com o usuário(SEUNOMESOBRENOME)</p>
 <p>Configure uma pool chamada (SEUNOMESOBRENOME).kinghost.net que escute via unix socket no seguinte endereço: /var/run/php-fpm/(SEUNOMESOBRENOME).sock</p>
@@ -153,11 +155,11 @@ $ php -v
 
 <p>Criei o arquivo phpinfo.php em /home/gabrieljezewski/www com o script abaixo:</p>
 
-```bas
+```bash
 $ vim /home/gabrieljezewski/www/phpinfo.php
 ```
 
-```bas
+```bash
 $ <?php
 $  phpinfo();
 $ ?>
@@ -165,7 +167,7 @@ $ ?>
 
 <p>Após isso, percebi que o servidor ainda não estava interpretando arquivo php, deste modo foi necessário cofigurar em meu arquivo gabrieljezewski.conf localizado em /etc/nginx/conf.d/ o seguinte trecho abaixo do código já existe:</p>
 
-```bas
+```bash
 $ location ~ \.php$ {
 $   fastcgi_pass unix:/run/php-fpm/www.sock;
 $   fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
