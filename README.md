@@ -97,7 +97,7 @@ $ firewall-cmd --list-ports
 $ firewall-cmd --permanent --zone=public --add-port=80/tcp
 ```
 
-<p>Para criar um vhost apontado para gabrieljezewski.kinghost.net, criei o arquivo gabrieljezewski.conf dentro de /etc/nginx/conf.d/</p>
+<p>Para criar um vhost apontado para gabrieljezewski.kinghost.net, criei o arquivo gabrieljezewski.conf dentro de /etc/nginx/conf.d/ e inseri o seguite script:</p>
 
 ```bas
 $ sudo vim /etc/nginx/conf.d/gabrieljezewski.conf
@@ -118,4 +118,3 @@ $ }
 ```
 
 <p>Neste script, configurei o servidor para escutar na porta 80 e associei o nome do servidor "gabrieljezewski.kinghost.net" ao vhost. O diretório raiz está definido como "/home/gabrieljezewski/www"</p>
-
