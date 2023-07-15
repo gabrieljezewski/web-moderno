@@ -122,3 +122,14 @@ $ }
 ```
 
 <p>Neste script, configurei o servidor para escutar na porta 80 e associei o nome do servidor "gabrieljezewski.kinghost.net" ao vhost. O diretório raiz está definido como "/home/gabrieljezewski/www"</p>
+<p>Após isso, criei o diretório /home/gabrieljezewski/www, verifiquei se as permissões está corretas, e reiniciar o servidor para testar.</p>
+
+
+```bas
+$ sudo mkdir -p /home/gabrieljezewski/www
+$ ls -ld /home/gabrieljezewski/www
+$ systemctl restart nginx
+```
+
+<br>
+<h1>Item 4:</h1>
