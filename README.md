@@ -149,8 +149,47 @@ $ sudo yum install php
 $ php -v
 ```
 
-<p>A pool deverá ser configurada para ser utilizada com o usuário(SEUNOMESOBRENOME)</p>
-<p>Configure uma pool chamada (SEUNOMESOBRENOME).kinghost.net que escute via unix socket no seguinte endereço: /var/run/php-fpm/(SEUNOMESOBRENOME).sock</p>
+<p>Configurei a pool com o meu usuário gabrieljezewski acessando o arquivo www.conf em /etc/php-fpm.d/, e editei as linhas user e group conforme abaixo:</p>
+
+```bash
+$ sudo vim /etc/php-fpm.d/www.conf
+```
+<p>De:</p>
+
+```bash
+$ user = apache
+$ group = apache
+```
+
+<p>Para:</p>
+
+```bash
+$ user = gabrieljezewski
+$ group = gabrieljezewski
+```
+<p>E salvei apertando esq :wq</p>
+
+<p>Para configurar uma nova pool gabriel.kinghost.net que escute via unix socket no seguinte endereço: /var/run/php-fpm/(SEUNOMESOBRENOME).sock, criei um arquivo novo com o seguinte script:</p>
+
+```bash
+$ sudo vim /etc/php-fpm.d/gabrieljezewski.kinghost.net.conf
+```
+
+```bash
+$ [gabrieljezewski.kinghost.net]
+$ user = gabrieljezewski
+$ group = gabrieljezewski
+$ listen = /var/run/php-fpm/gabrieljezewski.sock
+$ listen.owner = gabrieljezewski
+$ listen.group = gabrieljezewski
+$ listen.mode = 0660
+$ pm = dynamic
+$ pm.max_children = 5
+$ pm.start_servers = 2
+$ pm.min_spare_servers = 1
+$ pm.max_spare_servers = 3
+```
+
 <p>Você deve configurar a pool para trabalhar com processos por demanda</p>
 <p>A pool deve conter a configuração de 2 processos.</p>
 
