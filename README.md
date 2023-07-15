@@ -54,7 +54,7 @@ $ vim default.target.wants/donttouchmeimscared.service
 $ vim /bin/donttouchme.sh
 ```
 
-<p>Deste modo, pensei em renomear o arquivo, retirar permissões, atribuir chattr a ele mas sem sucesso. Deste modo, percebi que ele identifiquei que ele fazia a mudança deste script para o arquivo /root/.bash_profile, e nele adicionei o seguint script que funcionou:</p>
+<p>Deste modo, pensei em renomear o arquivo, retirar permissões, atribuir chattr a ele mas sem sucesso. Deste modo, percebi que ele fazia a mudança deste script para o arquivo /root/.bash_profile, e então nele adicionei o seguint script que funcionou:</p>
 
 ```bash
 $ # .bash_profile
