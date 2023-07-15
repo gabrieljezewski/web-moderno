@@ -5,7 +5,7 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
 
 ## Instruções para a prova
 
-- [ ] Item 1 - Utilize o domínio .kinghost.net disponível em seu cadastro interno para que responda pelo VPS.
+- [ ] Utilize o domínio .kinghost.net disponível em seu cadastro interno para que responda pelo VPS.
 - [x] Item 2 - Altere o hostname da máquina para (SEUNOMESOBRENOME) de forma persistente, e ajuste o fuso horário do servidor para o horário de São Paulo.
 - [ ] Item 3 - Configure a seguinte estrutura para servir aplicações web com linguagem PHP:
   - Instale o webserver Nginx;
@@ -34,13 +34,8 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
   - Instalar o plugin WP Mail SMTP e realizar um teste de envio para testandosuaconta.n2@gmail.com;
 
 ## Resolução
+## Item 2:
 ```bash
-# Item 1:
-$ 
-```
-
-```bash
-# Item 2:
 # Primeiramente atualizei os pacotes do sistema com o comando yum install
 # Executei o comando abaixo para alterar o hostname de forma persistente
 $ sudo hostnamectl set-hostname gabrieljezewski
@@ -71,5 +66,7 @@ $ timedatectl
 $ sudo yum install nginx
 $ sudo systemctl start nginx
 $ sudo systemctl status nginx
-
+# Listei as portas liberadas, vi que não estava a pota 80, então liberei a mesma.
+$ firewall-cmd --list-ports
+$ firewall-cmd --permanent --zone=public --add-port=80/tcp
 ```
