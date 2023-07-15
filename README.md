@@ -204,7 +204,7 @@ $ pm = dynamic
 $ pm.max_children = 5
 ```
 
-<p>De:</p>>
+<p>De:</p>
 
 ```bash
 $ pm = ondemand
