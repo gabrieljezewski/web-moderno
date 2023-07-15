@@ -190,10 +190,29 @@ $ pm.min_spare_servers = 1
 $ pm.max_spare_servers = 3
 ```
 
-<p>Você deve configurar a pool para trabalhar com processos por demanda</p>
-<p>A pool deve conter a configuração de 2 processos.</p>
+<p>Feito isso, configurei essa pool para trabalhar com processos por demanda(ondemand) e defini o número de processos para 2.</p>
+<p>Acessei o arquivo gabrieljezewski.kinghost.net.conf dentro de /etc/php-fpm.d/ e modifiquei o script alterando duas linhas, conforme abaixo:</p>
 
-<p>Criei o arquivo phpinfo.php em /home/gabrieljezewski/www com o script abaixo:</p>
+```bash
+$ vim /etc/php-fpm.d/gabrieljezewski.kinghost.net.conf
+```
+
+<p>Para: </p>
+
+```bash
+$ pm = dynamic
+$ pm.max_children = 5
+```
+
+<p>De:</p>>
+
+```bash
+$ pm = ondemand
+$ pm.max_children = 2
+```
+<p>Salvei o arquivo com o comando esq :wq e reiniciei o servidor com o comando sudo systemctl restart php-fpm</p>
+
+<p>Por fim, criei o arquivo phpinfo.php em /home/gabrieljezewski/www com o script abaixo:</p>
 
 ```bash
 $ vim /home/gabrieljezewski/www/phpinfo.php
