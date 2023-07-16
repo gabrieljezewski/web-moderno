@@ -115,7 +115,7 @@ $   listen 80;
 $   server_name gabrieljezewski.kinghost.net;
 $   
 $   root /home/gabrieljezewski/www;
-$   index index.html;
+$   index index.php;
 $ 
 $   location / {
 $     try_files $uri $uri/ =404;
@@ -397,4 +397,26 @@ $ mysql -uroot -p wordpress < dump.sql
 
 <br>
 <h2>Item 8:</h2>
-<p></p>
+<p>Migrei o WordPress disponível em migra@desafion2.online utilizando rsync</p>
+<p>Criei o arquivo /root/.ssh/chave_ssh e inseri a chave disponibilizada no e-mail para o desafio</p>
+<p>Depois disso executei o comando abaixo para transferência dos arquivos:</p>
+
+```bash
+$ rsync --rsh="ssh -i ~/.ssh/chave_ssh" -zaP migra@desafion2.online: /home/wordpress
+```
+
+<p>Retornou erro de permissão, atribui então a ele permissão 400 e executei novamente.</p>
+
+```bash
+$ chmod 400 chave_ssh
+$ rsync --rsh="ssh -i ~/.ssh/chave_ssh" -zaP migra@desafion2.online: /home/gabrieljezewski/www/wordpress
+```
+
+<p>Depois disso foi transferido os arquivos, movi eles para a /www e atribui permissões 755 e usuário root</p>
+
+```bash
+$ mv wordpress/* .
+$ chmod 755 www
+$ chown -R root:root .
+```
+
