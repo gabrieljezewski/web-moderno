@@ -2,9 +2,9 @@
 <h3>Objetivo do projeto:</h3>
 <p>Configurar um ambiente para hospedar uma aplicação web, em um VPS que possui apenas o sistema instalado, seguindo o padrão do host utilizado. Entrentanto algumas configurações foram alteradas para simular dificuldades
 comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as falhas e aplicar as correções que julgar necessárias.</p>
+<br>
 
 ## Instruções para a prova
-
 - [x] Item 1 - Utilize o domínio .kinghost.net disponível em seu cadastro interno para que responda pelo VPS.
 - [x] Item 2 - Altere o hostname da máquina para (SEUNOMESOBRENOME) de forma persistente, e ajuste o fuso horário do servidor para o horário de São Paulo.
 - [x] Item 3 - Configure a seguinte estrutura para servir aplicações web com linguagem PHP:
@@ -33,12 +33,14 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
   - A página inicial  e /wp-admin deve estar acessível através do seu domínio .kinghost.net;
   - Instalar o plugin WP Mail SMTP e realizar um teste de envio para testandosuaconta.n2@gmail.com;
 
-## Resolução
-<h1>Item 1:</h1>
+<br>
+
+## Resolução:
+<h2>Item 1:</h2>
 <p>Acessei meu painel de controle da KingHost onde possuo o domínio gabrieljezewski.kinghost.net, e no ícone gerenciar DNS alterei as entradas @ e www que estavam incorretas, apontadas para web01-king.kinghost.net. Alterei elas para o ip da vps 177.153.58.61</p>
 
 <br>
-<h1>Item 2:</h1>
+<h2>Item 2:</h2>
 <p>Primeiramente atualizei os pacotes do sistema com o comando yum install. Após isso executei o comando abaixo para alterar o hostname de forma persistente.
 </p>
 
@@ -84,8 +86,9 @@ $ sudo ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 $ sudo hwclock --systohc
 $ timedatectl
 ```
+
 <br>
-<h1>Item 3:</h1>
+<h2>Item 3:</h2>
 <p>Executei os comandos abaixo para instalar o Nginx, ativar o serviço e verificar o status.</p>
 
 ```bash
@@ -132,7 +135,7 @@ $ systemctl restart nginx
 ```
 
 <br>
-<h1>Item 4:</h1>
+<h2>Item 4:</h2>
 <p>Para instalação do PHP8 e PHP-FPM, foi necessário isntalar antes o repositório Remi e yum-utils.</p>
 
 ```bash
@@ -241,7 +244,8 @@ $ }
 $ systemctl restart nginx
 ```
 
-<h1>Item 5:</h1>
+<br>
+<h2>Item 5:</h2>
 <p>Instalei o serviço de FTP (proftpd).</p>
 
 ```bash
@@ -276,5 +280,6 @@ $ sudo chown -R gabrieljezewskiadd:gabrieljezewski /home/gabrieljezewski/www
 $ sudo passwd gabrieljezewskiadd
 ```
 
-<h1>Item 6:</h1>
+<br>
+<h2>Item 6:</h2>
 <p></p>
