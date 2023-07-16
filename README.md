@@ -96,7 +96,7 @@ $ sudo systemctl start nginx
 $ sudo systemctl status nginx
 ```
 
-<p>Listei as portas liberadas, vi que não estava a pota 80, então liberei a mesma.</p>
+<p>Listei as portas liberadas, vi que não estava a porta 80, então liberei a mesma.</p>
 
 ```bash
 $ firewall-cmd --list-ports
