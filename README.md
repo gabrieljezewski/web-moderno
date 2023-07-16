@@ -133,7 +133,7 @@ $ systemctl restart nginx
 ```
 
 <br>
-<h2>Item 4:</h2>
+<h2>Item 3:</h2>
 <p>Para instalação do PHP8 e PHP-FPM, foi necessário instalar antes o repositório Remi e yum-utils.</p>
 
 ```bash
@@ -243,7 +243,7 @@ $ systemctl restart nginx
 ```
 
 <br>
-<h2>Item 5:</h2>
+<h2>Item 4:</h2>
 <p>Instalei o serviço de FTP (proftpd).</p>
 
 ```bash
@@ -314,7 +314,7 @@ $ */1 * * * * for i in {1..6}; do sudo iptables -C INPUT -p tcp -s 0/0 -d 0/0 --
 ```
 
 <br>
-<h2>Item 6:</h2>
+<h2>Item 5:</h2>
 <p>Implementei uma rotina de backup para a aplicação /home/gabrieljezewski/www, que deve ser executada todos os dias ás 23 horas, armazenando a cópia do conteúdo no diretório /backup do servidor.</p>
 <p>Criei o arquivo backup.sh em /bin, com o seguinte script.</p>
 
@@ -428,14 +428,14 @@ $ sudo yum install php-mysqli
 $ sudo systemctl restart nginx
 ```
 
-<p>Configurei usário e senha para /wp-admin:</p>
+<p>Após isso, configurei usário e senha para /wp-admin e também ajustei no arquivo wp-config.php a conexão com o banco de dados, para os mesmos dados do usuário criado no servidor.</p>
+<p>Porém, depois de configurado e ajustado o WP, o conteúdo na home não apareceu o post "Eu sou um link", que foi citado no desafio da prova, e sim o post "Mindblown: a blog about philosophy". Então acredito que possa ter acontecido algum erro na transferência dos arquivos e/ou banco de dados.</p>
+
+<p>Por fim, instalei o WP Mail SMTP via wp-cli mas retornou o seguinte erro:</p>
 
 ```bash
-$ gabrieljezewski
-$ desafio@n2
+$ wp plugin install wp-mail-smtp --activate
 ```
-
-<p>Porém, depois de configurado e ajustado o WP, o conteúdo na home não apareceu com o post "Eu sou um link", então acredito que possa ter acontecido algum erro na transferência dos arquivos e/ou banco de dados. Por fim, faltou a instalação/configuração do plugin WP Mail SMTP, e ao tentar instalar retornou erro:</p>
 
 ```bash
 $ Instalação falhou: Falha no download. cURL error 7: Failed to connect to downloads.wordpress.org port 443: Connection refused
@@ -448,4 +448,15 @@ $ sudo firewall-cmd --zone=public --add-port=443/tcp --permanent
 $ firewall-cmd --reload
 ```
 
+<p>Verifiquei se o curl estava ativo com o comando which curl, e estava também.</p>
+
 <p>Não consegui concluir esta parte do plugin, por questão de tempo mesmo, acabei tendo dificuldades em outras questões e fiquei com pouco tempo no final para concluir essa parte.</p>
+
+<p>Para testar acesso, basta primeiro acessar o servidor(ssh), com os dados abaixo:</p>
+<p>Host: gabrieljezewski.vps-kinghost.net</p>
+<p>Usuário: root</p>
+<p>Senha: b6ixUQNK55!8</p>
+<p>Após isso, todos os serviçõs são iniciados automaticamente, como nginx, php, mysql. Sendo necessário somente fazer o acesso via browser pelo endereço http://gabrieljezewski.kinghost.net/.</p>
+<p>Url admin: http://gabrieljezewski.kinghost.net/wp-admin</p>
+<p>usuário: gabrieljezewski</p>
+<p>senha: desafio@n2</p>
