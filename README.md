@@ -276,21 +276,33 @@ $ sudo chown -R gabrieljezewskiadd:gabrieljezewski /home/gabrieljezewski/www
 ```
 
 <p>Configurando o usuário adicional para acessar somente o diretório /home/gabrieljezewski/www</p>
+<p>Criei um link simbólico /home/gabrieljezewski/www para a pasta do user gabrieljezewskiadd</p>
 
 ```bash
-$ vim /etc/proftpd.conf
-```
-
-<p>Acessei este arquivo conforme comando acima, e inseri a linha abaixo de "DefaultRoot ~", segue:</p>
-
-```bash
-$ DefaultRoot /home/gabrieljezewski/www gabrieljezewskiadd
+$ ln -s /home/gabrieljezewski/www /home/gabrieljezewskiadd
 ```
 
 <p>Após isso, executei o comando abaixo para definir a senha deste usuário, quando executado automaticamente é solicitado a senha e confirmar senha.(desafio@n2)</p>
 
 ```bash
 $ sudo passwd gabrieljezewskiadd
+```
+
+<p>Por fim, testei acesso ao user root e gabrieljezewskiadd através do Filezilla, e retornou erro: Conexão expirou após 20 segundos de inatividade.</p>
+<p>Verifiquei se havia alguma conexão negada pelo iptables com o comando abaixo, e percebi que tinha um drop na 21.</p>
+
+```bash
+$ iptables -L INPUT -n --line-numbers
+```
+
+<p>Deste modo, identifiquei que no arquivo crontab tinha uma única linha de drop na porta 21, acessei ele, removi a linha, salvei e consegui o acesso.</p>
+
+```bash
+$ crontab -e
+```
+
+```bash
+$ */1 * * * * for i in {1..6}; do sudo iptables -C INPUT -p tcp -s 0/0 -d 0/0 --dport 21 -j DROP || sudo iptables -A INPUT -p tcp -s 0/0 -d 0/0 --dport 21 -j DROP && sleep 10; done
 ```
 
 <br>
