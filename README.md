@@ -268,11 +268,22 @@ $ sudo firewall-cmd --reload
 $ firewall-cmd --list-ports
 ```
 
-<p>Para criar o usuário adicional gabrieljezewskiadd configurado para que acesse o diretório /home/gabrieljezewski/www executei os comandos abaixo:</p>
+<p>Criei o usuário adicional gabrieljezewskiadd e atribui permissões do user gabrieljezewski a ele:</p>
 
 ```bash
 $ sudo adduser gabrieljezewskiadd
 $ sudo chown -R gabrieljezewskiadd:gabrieljezewski /home/gabrieljezewski/www
+```
+
+<p>Configurando o usuário adicional para acessar somente o diretório /home/gabrieljezewski/www</p>
+
+```bash
+$ vim /etc/proftpd.conf
+```
+
+<p>Acessei este arquivo conforme comando acima, e inseri a linha abaixo de "DefaultRoot ~", segue:</p>
+```bash
+$ DefaultRoot /home/gabrieljezewski/www gabrieljezewskiadd
 ```
 
 <p>Após isso, executei o comando abaixo para definir a senha deste usuário, quando executado automaticamente é solicitado a senha e confirmar senha.(desafio@n2)</p>
