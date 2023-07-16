@@ -60,7 +60,7 @@ $ vim default.target.wants/donttouchmeimscared.service
 $ vim /bin/donttouchme.sh
 ```
 
-<p>Deste modo, pensei em renomear o arquivo, retirar permissões, atribuir chattr a ele, desativar selinux mas sem sucesso. Deste modo, percebi que ele fazia a mudança deste script para o arquivo /root/.bash_profile, e então nele adicionei o seguint script que funcionou:</p>
+<p>Deste modo, pensei em renomear o arquivo, retirar permissões, atribuir chattr a ele, desativar selinux mas sem sucesso. Deste modo, percebi que ele fazia a mudança deste script para o arquivo /root/.bash_profile, e então nele adicionei o seguint script:</p>
 
 ```bash
 $ # .bash_profile
@@ -371,4 +371,16 @@ $ wp --info
 ```
 
 <h2>Item 7:</h2>
-<p></p>
+<p>Instalei Mysql8, ativei e iniciei o serviço.</p>
+
+```bash
+$ yum -y install @mysql
+$ systemctl start mysqld
+$ systemctl enable --now mysqld
+```
+
+<p>Resgatei o banco migra@desafion2.online acessando o mesmo via gerenciador DBeaver, exportei o arquivo .sql e importei para o meu servidor da minha máquina via scp</p>
+
+```bash
+$ 
+```
