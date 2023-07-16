@@ -22,17 +22,17 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
   - Crie um usuário adicional chamado (SEUNOMESOBRENOME)add que acesse o diretório (/home/(SEUNOMESOBRENOME)/www);
 - [x] Item 5 - Implemente uma rotina de backup para ser executada todos os dias às 23 horas armazenando a cópia do conteúdo no diretório /backup.
 - [x] Item 6 - Instale o utilitário rsync e WP-CLI, de forma que possa ser utilizado com o comando ‘wp’.
-- [ ] Instale um software para gerenciamento de banco de dados (MySQL ou MariaDB).
+- [ ] Item 7 - Instale um software para gerenciamento de banco de dados (MySQL ou MariaDB).
   - Crie um banco de dados e um usuário no padrão (SEUNOMESOBRENOME);
   - Resgate o conteúdo disponível no host (-h desafion2.online -b wordpress -u dump2me -p U8qe6Q}?5w) e importe na sua base;
-- [ ] Item 7 - Utilize o rsync para realizar a migração do WordPress disponível neste local:
+- [ ] Item 8 - Utilize o rsync para realizar a migração do WordPress disponível neste local:
   - Usuário - migra, Host - desafion2.online, Caminho - : (Ex- migra@desafion2.online:);
-- [ ] Item 8 - Você deve utilizar a chave ssh que foi disponibilizada no email do desafio para que consiga realizar o rsync.
-- [ ] Item 9 - Restaure o WordPress e ajuste a conexão com o banco de dados.
+  - Você deve utilizar a chave ssh que foi disponibilizada no email do desafio para que consiga realizar o rsync.
+  - Restaure o WordPress e ajuste a conexão com o banco de dados.
   - Ajuste as falhas presente na cms;
   - A página inicial  e /wp-admin deve estar acessível através do seu domínio .kinghost.net;
   - Instalar o plugin WP Mail SMTP e realizar um teste de envio para testandosuaconta.n2@gmail.com;
-
+  
 <br>
 
 ## Resolução:
@@ -369,3 +369,6 @@ $ sudo chmod +x /usr/local/bin/wp
 ```bash
 $ wp --info
 ```
+
+<h2>Item 7:</h2>
+<p></p>
