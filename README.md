@@ -282,6 +282,16 @@ $ sudo chown -R gabrieljezewskiadd:gabrieljezewski /home/gabrieljezewski/www
 $ ln -s /home/gabrieljezewski/www /home/gabrieljezewskiadd
 ```
 
+<p>Acessei o arquivo /etc/proftpd.conf e editei a linha "#DefaultRoot ~" para conforme abaixo e salvei pressionando esq :wq</p>
+
+```bash
+$ vim /etc/proftpd.conf
+```
+
+```bash
+$ DefaultRoot /home/gabrieljezewskiadd/www
+```
+
 <p>Após isso, executei o comando abaixo para definir a senha deste usuário, quando executado automaticamente é solicitado a senha e confirmar senha.(desafio@n2)</p>
 
 ```bash
