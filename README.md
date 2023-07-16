@@ -22,7 +22,7 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
   - Crie um usuário adicional chamado (SEUNOMESOBRENOME)add que acesse o diretório (/home/(SEUNOMESOBRENOME)/www);
 - [x] Item 5 - Implemente uma rotina de backup para ser executada todos os dias às 23 horas armazenando a cópia do conteúdo no diretório /backup.
 - [x] Item 6 - Instale o utilitário rsync e WP-CLI, de forma que possa ser utilizado com o comando ‘wp’.
-- [ ] Item 7 - Instale um software para gerenciamento de banco de dados (MySQL ou MariaDB).
+- [x] Item 7 - Instale um software para gerenciamento de banco de dados (MySQL ou MariaDB).
   - Crie um banco de dados e um usuário no padrão (SEUNOMESOBRENOME);
   - Resgate o conteúdo disponível no host (-h desafion2.online -b wordpress -u dump2me -p U8qe6Q}?5w) e importe na sua base;
 - [ ] Item 8 - Utilize o rsync para realizar a migração do WordPress disponível neste local:
@@ -369,7 +369,7 @@ $ sudo chmod +x /usr/local/bin/wp
 ```bash
 $ wp --info
 ```
-
+<br>
 <h2>Item 7:</h2>
 <p>Instalei Mysql8, ativei e iniciei o serviço.</p>
 
@@ -382,5 +382,19 @@ $ systemctl enable --now mysqld
 <p>Resgatei o banco migra@desafion2.online acessando o mesmo via gerenciador DBeaver, exportei o arquivo .sql e importei para o meu servidor da minha máquina via scp</p>
 
 ```bash
-$ 
+$ scp -pr dump.sql  root@177.153.58.61:/root/
 ```
+
+<p>Após isso, acessei o mysql, criei o user root e defini a senha, criei o banco wordpress, defini privilégios e importei o .sql para ele, conforme abaixo:</p>
+
+```bash
+$ mysql -uroot -p
+$ ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+$ create database wordpress;
+$ flush privileges;
+$ mysql -uroot -p wordpress < dump.sql
+```
+
+<br>
+<h2>Item 8:</h2>
+<p></p>
