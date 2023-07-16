@@ -31,7 +31,7 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
   - Restaure o WordPress e ajuste a conexão com o banco de dados.
   - Ajuste as falhas presente na cms;
   - A página inicial  e /wp-admin deve estar acessível através do seu domínio .kinghost.net;
-  - Instalar o plugin WP Mail SMTP e realizar um teste de envio para testandosuaconta.n2@gmail.com;
+  - Instalar o plugin WP Mail SMTP e realizar um teste de envio para testandosuaconta.n2@gmail.com; (Não realizado).
   
 <br>
 
