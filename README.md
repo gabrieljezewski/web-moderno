@@ -20,7 +20,7 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
 - [x] Item 5 - Instale um serviço de FTP (proftpd).
   - Crie um usuário principal que poderá ser acessado na porta 21;
   - Crie um usuário adicional chamado (SEUNOMESOBRENOME)add que acesse o diretório (/home/(SEUNOMESOBRENOME)/www);
-- [ ] Item 6 - Implemente uma rotina de backup para ser executada todos os dias às 23 horas armazenando a cópia do conteúdo no diretório /backup.
+- [x] Item 6 - Implemente uma rotina de backup para ser executada todos os dias às 23 horas armazenando a cópia do conteúdo no diretório /backup.
 - [ ] Item 7 - Instale o utilitário rsync e WP-CLI, de forma que possa ser utilizado com o comando ‘wp’.
 - [ ] Instale um software para gerenciamento de banco de dados (MySQL ou MariaDB).
   - Crie um banco de dados e um usuário no padrão (SEUNOMESOBRENOME);
@@ -252,11 +252,12 @@ $ systemctl restart nginx
 $ sudo yum install proftpd
 ```
 
-<p>Acessei o arquivo /etc/proftpd.conf e conferi se na linha DefaultRoot estava da seguinte forma: "DefaultRoot ~". Deste modo, permitirá que o usuário principal acesse seu diretório inicial após o login no FTP. E por fim reiniciei o serviço de proftpd.</p>
+<p>Acessei o arquivo /etc/proftpd.conf e conferi se na linha DefaultRoot estava da seguinte forma: "DefaultRoot ~". Deste modo, permitirá que o usuário principal acesse seu diretório inicial após o login no FTP. E por fim ativei e iniciei o serviço de proftpd.</p>
 
 ```bash
 $ vim /etc/proftpd.conf
-$ systemctl restart proftpd
+$ systemctl enable proftpd
+$ systemctl start proftpd
 ```
 
 <p>Após isso, liberei a porta 21, atualizei e listei se de fato foi liberada.</p>
@@ -282,4 +283,44 @@ $ sudo passwd gabrieljezewskiadd
 
 <br>
 <h2>Item 6:</h2>
-<p></p>
+<p>Implementei uma rotina de backup para a aplicação /home/gabrieljezewski/www, que deve ser executada todos os dias ás 23 horas, armazenando a cópia do conteúdo no diretório /backup do servidor.</p>
+<p>Primeiramente instalei o rsync, e criei o script em /usr/local/bin/backup_script.sh com o seguinte código.</p>
+
+```bash
+$ sudo yum install rsync
+$ sudo vim /usr/local/bin/backup_script.sh
+```
+
+```bash
+$ #!/bin/bash
+$ 
+$ # Caminho da aplicação
+$ source_dir="/home/gabrieljezewski/www/"
+$ 
+$ # Caminho da pasta de backup
+$ backup_dir="/backup/"
+$
+$ # Executa o backup usando rsync
+$ rsync -av --delete $source_dir $backup_dir
+```
+
+<p>Por último, basta tornar o script executável:</p>
+
+```bash
+$ sudo chmod +x /usr/local/bin/backup_script.sh
+```
+
+<p>Para configurar o agendamento do backup com o "cron", precirei abrir o arquivo de tarefas:</p>
+
+```bash
+$ sudo crontab -e
+```
+
+<p>E adicionei a seguinte linha nele:</p>
+
+```bash
+$ 0 23 * * * /usr/local/bin/backup_script.sh
+```
+
+<p>Lembrando que para salvar a alteração, basta pressionar esq :wq</p>
+<p>Deste forma, O backup diário será executado automaticamente todos os dias às 23 horas. O "rsync" irá copiar os arquivos da aplicação (/home/gabrieljezewski/www) para o diretório de backup (/backup/), mantendo-os sincronizados.</p>
