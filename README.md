@@ -25,7 +25,7 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
 - [x] Item 7 - Instale um software para gerenciamento de banco de dados (MySQL ou MariaDB).
   - Crie um banco de dados e um usuário no padrão (SEUNOMESOBRENOME);
   - Resgate o conteúdo disponível no host (-h desafion2.online -b wordpress -u dump2me -p U8qe6Q}?5w) e importe na sua base;
-- [ ] Item 8 - Utilize o rsync para realizar a migração do WordPress disponível neste local:
+- [x] Item 8 - Utilize o rsync para realizar a migração do WordPress disponível neste local:
   - Usuário - migra, Host - desafion2.online, Caminho - : (Ex- migra@desafion2.online:);
   - Você deve utilizar a chave ssh que foi disponibilizada no email do desafio para que consiga realizar o rsync.
   - Restaure o WordPress e ajuste a conexão com o banco de dados.
@@ -420,3 +420,32 @@ $ chmod 755 www
 $ chown -R root:root .
 ```
 
+<p>Por fim, acessei o endereço do domínio http://gabrieljezewski.kinghost.net/ e retornou erro de PHP mysqli não instado. Consultei se estava de fato instalda, como não, instalei com o comando abaixo:</p>
+
+```bash
+$ php -m | grep mysqli
+$ sudo yum install php-mysqli
+$ sudo systemctl restart nginx
+```
+
+<p>Configurei usário e senha para /wp-admin:</p>
+
+```bash
+$ gabrieljezewski
+$ desafio@n2
+```
+
+<p>Porém, depois de configurado e ajustado o WP, o conteúdo na home não apareceu com o post "Eu sou um link", então acredito que possa ter acontecido algum erro na transferência dos arquivos e/ou banco de dados. Por fim, faltou a instalação/configuração do plugin WP Mail SMTP, e ao tentar instalar retornou erro:</p>
+
+```bash
+$ Instalação falhou: Falha no download. cURL error 7: Failed to connect to downloads.wordpress.org port 443: Connection refused
+```
+
+<p>Liberei a porta 443 conforme comandos abaixo mas persitiu com o erro.</p>
+
+```bash
+$ sudo firewall-cmd --zone=public --add-port=443/tcp --permanent
+$ firewall-cmd --reload
+```
+
+<p>Não consegui concluir esta parte do plugin, por questão de tempo mesmo, acabei tendo dificuldades em outras questões e fiquei com pouco tempo no final para concluir essa parte.</p>
