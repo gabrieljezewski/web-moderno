@@ -349,6 +349,7 @@ $ 0 23 * * 1-7 /bin/sh backup.sh
 <p>Deste forma, O backup diário será executado automaticamente todos os dias às 23 horas. O "rsync" irá copiar os arquivos da aplicação (/home/gabrieljezewski/www) para o diretório de backup (/backup/), mantendo-os sincronizados.</p>
 <p>Fiz um teste antes para executar de 1 em 1 minuto, com a sintaxe * * * * * /bin/sh backup.sh e funcionou.</p>
 
+<br>
 <h2>Item 6:</h2>
 <p>Instalei rsync</p>
 
