@@ -17,7 +17,7 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
   - Configurar a pool para trabalhar com processos por demanda;
   - A pool deve conter a configuração de 2 processos;
   - Crie um arquivo chamado phpinfo.php;
-- [ ] Item 5 - Instale um serviço de FTP (proftpd).
+- [x] Item 5 - Instale um serviço de FTP (proftpd).
   - Crie um usuário principal que poderá ser acessado na porta 21;
   - Crie um usuário adicional chamado (SEUNOMESOBRENOME)add que acesse o diretório (/home/(SEUNOMESOBRENOME)/www);
 - [ ] Item 6 - Implemente uma rotina de backup para ser executada todos os dias às 23 horas armazenando a cópia do conteúdo no diretório /backup.
@@ -58,7 +58,7 @@ $ vim default.target.wants/donttouchmeimscared.service
 $ vim /bin/donttouchme.sh
 ```
 
-<p>Deste modo, pensei em renomear o arquivo, retirar permissões, atribuir chattr a ele mas sem sucesso. Deste modo, percebi que ele fazia a mudança deste script para o arquivo /root/.bash_profile, e então nele adicionei o seguint script que funcionou:</p>
+<p>Deste modo, pensei em renomear o arquivo, retirar permissões, atribuir chattr a ele, desativar selinux mas sem sucesso. Deste modo, percebi que ele fazia a mudança deste script para o arquivo /root/.bash_profile, e então nele adicionei o seguint script que funcionou:</p>
 
 ```bash
 $ # .bash_profile
@@ -237,6 +237,44 @@ $ }
 
 <p>Feito isso, reiniciei o servidor para surtir efeito.</p>
 
-```bas
+```bash
 $ systemctl restart nginx
 ```
+
+<h1>Item 5:</h1>
+<p>Instalei o serviço de FTP (proftpd).</p>
+
+```bash
+$ sudo yum install proftpd
+```
+
+<p>Acessei o arquivo /etc/proftpd.conf e conferi se na linha DefaultRoot estava da seguinte forma: "DefaultRoot ~". Deste modo, permitirá que o usuário principal acesse seu diretório inicial após o login no FTP. E por fim reiniciei o serviço de proftpd.</p>
+
+```bash
+$ vim /etc/proftpd.conf
+$ systemctl restart proftpd
+```
+
+<p>Após isso, liberei a porta 21, atualizei e listei se de fato foi liberada.</p>
+
+```bash
+$ sudo firewall-cmd --add-port=21/tcp --permanent
+$ sudo firewall-cmd --reload
+$ firewall-cmd --list-ports
+```
+
+<p>Para criar o usuário adicional gabrieljezewskiadd configurado para que acesse o diretório /home/gabrieljezewski/www executei os comandos abaixo:</p>
+
+```bash
+$ sudo adduser gabrieljezewskiadd
+$ sudo chown -R gabrieljezewskiadd:gabrieljezewski /home/gabrieljezewski/www
+```
+
+<p>Após isso, executei o comando abaixo para definir a senha deste usuário, quando executado automaticamente é solicitado a senha e confirmar senha.(desafio@n2)</p>
+
+```bash
+$ sudo passwd gabrieljezewskiadd
+```
+
+<h1>Item 6:</h1>
+<p></p>
