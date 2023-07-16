@@ -282,6 +282,7 @@ $ vim /etc/proftpd.conf
 ```
 
 <p>Acessei este arquivo conforme comando acima, e inseri a linha abaixo de "DefaultRoot ~", segue:</p>
+
 ```bash
 $ DefaultRoot /home/gabrieljezewski/www gabrieljezewskiadd
 ```
