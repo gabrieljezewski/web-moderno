@@ -103,7 +103,7 @@ $ firewall-cmd --list-ports
 $ firewall-cmd --permanent --zone=public --add-port=80/tcp
 ```
 
-<p>Para criar um vhost apontado para gabrieljezewski.kinghost.net, criei o arquivo gabrieljezewski.conf dentro de /etc/nginx/conf.d/ e inseri o seguite script:</p>
+<p>Para criar um vhost apontado para gabrieljezewski.kinghost.net, criei o arquivo gabrieljezewski.conf dentro de /etc/nginx/conf.d/ e inseri o seguinte script:</p>
 
 ```bash
 $ sudo vim /etc/nginx/conf.d/gabrieljezewski.conf
@@ -134,7 +134,7 @@ $ systemctl restart nginx
 
 <br>
 <h2>Item 4:</h2>
-<p>Para instalação do PHP8 e PHP-FPM, foi necessário isntalar antes o repositório Remi e yum-utils.</p>
+<p>Para instalação do PHP8 e PHP-FPM, foi necessário instalar antes o repositório Remi e yum-utils.</p>
 
 ```bash
 $ sudo yum install epel-release
