@@ -449,8 +449,7 @@ $ firewall-cmd --reload
 ```
 
 <p>Verifiquei se o curl estava ativo com o comando which curl, e estava também.</p>
-
-<p>Não consegui concluir esta parte do plugin, por questão de tempo mesmo, acabei tendo dificuldades em outras questões e fiquei com pouco tempo no final para concluir essa parte.</p>
+<p>Não consegui concluir esta parte do plugin, por questão de tempo mesmo, acabei tendo dificuldades em outras questões anteriores e fiquei com pouco tempo no final para concluir essa última configuração.</p>
 
 <p>Para testar acesso, basta primeiro acessar o servidor(ssh), com os dados abaixo:</p>
 <p>Host: gabrieljezewski.vps-kinghost.net</p>
