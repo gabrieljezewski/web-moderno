@@ -11,24 +11,24 @@ comuns que podem ocorrer em sistemas operacionais, sendo necessário analisar as
   - Instale o webserver Nginx;
   - Crie um vhost para o site que corresponde ao seu domínio: (SEUNOMESOBRENOME).kinghost.net;
   - O diretório do site deverá ser /home/(SEUNOMESOBRENOME)/www
-- [x] Item 4 - Instale o PHP e o PHP-FPM.
+  - Instale o PHP e o PHP-FPM.
   - A pool deverá ser configurada para ser utilizada com o usuário (SEUNOMESOBRENOME);
   - Configure uma pool chamada (SEUNOMESOBRENOME).kinghost.net que escute via unix socket no seguinte endereço: /var/run/php-fpm/(SEUNOMESOBRENOME).sock;
   - Configurar a pool para trabalhar com processos por demanda;
   - A pool deve conter a configuração de 2 processos;
   - Crie um arquivo chamado phpinfo.php;
-- [x] Item 5 - Instale um serviço de FTP (proftpd).
+- [x] Item 4 - Instale um serviço de FTP (proftpd).
   - Crie um usuário principal que poderá ser acessado na porta 21;
   - Crie um usuário adicional chamado (SEUNOMESOBRENOME)add que acesse o diretório (/home/(SEUNOMESOBRENOME)/www);
-- [x] Item 6 - Implemente uma rotina de backup para ser executada todos os dias às 23 horas armazenando a cópia do conteúdo no diretório /backup.
-- [ ] Item 7 - Instale o utilitário rsync e WP-CLI, de forma que possa ser utilizado com o comando ‘wp’.
+- [x] Item 5 - Implemente uma rotina de backup para ser executada todos os dias às 23 horas armazenando a cópia do conteúdo no diretório /backup.
+- [x] Item 6 - Instale o utilitário rsync e WP-CLI, de forma que possa ser utilizado com o comando ‘wp’.
 - [ ] Instale um software para gerenciamento de banco de dados (MySQL ou MariaDB).
   - Crie um banco de dados e um usuário no padrão (SEUNOMESOBRENOME);
   - Resgate o conteúdo disponível no host (-h desafion2.online -b wordpress -u dump2me -p U8qe6Q}?5w) e importe na sua base;
-- [ ] Item 8 - Utilize o rsync para realizar a migração do WordPress disponível neste local:
+- [ ] Item 7 - Utilize o rsync para realizar a migração do WordPress disponível neste local:
   - Usuário - migra, Host - desafion2.online, Caminho - : (Ex- migra@desafion2.online:);
-- [ ] Item 9 - Você deve utilizar a chave ssh que foi disponibilizada no email do desafio para que consiga realizar o rsync.
-- [ ] Item 10 - Restaure o WordPress e ajuste a conexão com o banco de dados.
+- [ ] Item 8 - Você deve utilizar a chave ssh que foi disponibilizada no email do desafio para que consiga realizar o rsync.
+- [ ] Item 9 - Restaure o WordPress e ajuste a conexão com o banco de dados.
   - Ajuste as falhas presente na cms;
   - A página inicial  e /wp-admin deve estar acessível através do seu domínio .kinghost.net;
   - Instalar o plugin WP Mail SMTP e realizar um teste de envio para testandosuaconta.n2@gmail.com;
@@ -87,8 +87,6 @@ $ sudo hwclock --systohc
 $ timedatectl
 ```
 
-<br>
-<h2>Item 3:</h2>
 <p>Executei os comandos abaixo para instalar o Nginx, ativar o serviço e verificar o status.</p>
 
 ```bash
@@ -318,30 +316,21 @@ $ */1 * * * * for i in {1..6}; do sudo iptables -C INPUT -p tcp -s 0/0 -d 0/0 --
 <br>
 <h2>Item 6:</h2>
 <p>Implementei uma rotina de backup para a aplicação /home/gabrieljezewski/www, que deve ser executada todos os dias ás 23 horas, armazenando a cópia do conteúdo no diretório /backup do servidor.</p>
-<p>Primeiramente instalei o rsync, e criei o script em /usr/local/bin/backup_script.sh com o seguinte código.</p>
+<p>Criei o arquivo backup.sh em /bin, com o seguinte script.</p>
 
 ```bash
-$ sudo yum install rsync
-$ sudo vim /usr/local/bin/backup_script.sh
+$ vim /bin/backup.sh
 ```
 
 ```bash
-$ #!/bin/bash
+$ $ #!/bin/sh
 $ 
-$ # Caminho da aplicação
-$ source_dir="/home/gabrieljezewski/www/"
+$ backup_dir=/backup
+$ app_dir=/home/gabrieljezewski/www
+$ dir_date=$(date +%Y-%m-%d)
 $ 
-$ # Caminho da pasta de backup
-$ backup_dir="/backup/"
-$
-$ # Executa o backup usando rsync
-$ rsync -av --delete $source_dir $backup_dir
-```
-
-<p>Por último, basta tornar o script executável:</p>
-
-```bash
-$ sudo chmod +x /usr/local/bin/backup_script.sh
+$ mkdir -p "$backup_dir"/"$dir_date"
+$ cp $app_dir "$backup_dir"/"$dir_date"
 ```
 
 <p>Para configurar o agendamento do backup com o "cron", precirei abrir o arquivo de tarefas:</p>
@@ -353,8 +342,30 @@ $ sudo crontab -e
 <p>E adicionei a seguinte linha nele:</p>
 
 ```bash
-$ 0 23 * * * /usr/local/bin/backup_script.sh
+$ 0 23 * * 1-7 /bin/sh backup.sh
 ```
 
 <p>Lembrando que para salvar a alteração, basta pressionar esq :wq</p>
 <p>Deste forma, O backup diário será executado automaticamente todos os dias às 23 horas. O "rsync" irá copiar os arquivos da aplicação (/home/gabrieljezewski/www) para o diretório de backup (/backup/), mantendo-os sincronizados.</p>
+<p>Fiz um teste antes para executar de 1 em 1 minuto, com a sintaxe * * * * * /bin/sh backup.sh e funcionou.</p>
+
+<h2>Item 6:</h2>
+<p>Instalei rsync</p>
+
+```bash
+$ sudo yum install rsync
+```
+
+<p>Instalando WP-CLI e configurando o comando wp</p>
+<p>Primeiro baixei o arquivo executável "wp" salvando no diretório /usr/local/bin/, e após deixei o arquivo executável:</p>
+
+```bash
+$ sudo curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+$ sudo chmod +x /usr/local/bin/wp
+```
+
+<p>Por fim, executei o comando abaixo para confirmar se foi instalado corretamente.</p>
+
+```bash
+$ wp --info
+```
